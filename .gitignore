@@ -1,0 +1,10 @@
+/Data
+/Embeddings
+/Models
+__pycache__/
+prometheus/
+node_exporter/
+alertmanager/
+*.pyc
+*.pyo
+*.pyd

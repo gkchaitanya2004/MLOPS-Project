@@ -1,0 +1,33 @@
+groups:
+ - name : High_CPU_Usage
+   rules:
+    - alert: HighCPUUsage
+      expr: 100 - (avg by (instance)(rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High CPU usage detected"
+        description: "CPU usage is above 80% for more than 1 minute."
+
+ - name : High_Memory_Usage
+   rules:
+    - alert: HighMemoryUsage
+      expr: 1 -(node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) > 0.8
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High memory usage detected"
+        description: "Memory usage is above 80% for more than 1 minute."
+
+ - name : IncreasedLatency
+   rules:
+    - alert: IncreasedLatency
+      expr:  sum(rate(gaurdrail_request_latency_seconds_sum[5m])) / sum(rate(gaurdrail_request_latency_seconds_count[5m])) > 1
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Increased latency detected"
+        description: "Request latency is above 1 second for more than 1 minute."

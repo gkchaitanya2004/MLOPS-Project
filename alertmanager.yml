@@ -1,0 +1,15 @@
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 1h
+  receiver: 'email'
+receivers:
+  - name: 'email'
+    email_configs:
+      - to: 'chaitu.gorle@gmail.com'
+        from: 'chaitu.gorle@gmail.com'
+        smarthost: 'sandbox.smtp.mailtrap.io:587'
+        auth_username : 'YOUR USERNAME'
+        auth_password : 'YOUR APP PASSWORD'
+

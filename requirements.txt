@@ -1,0 +1,14 @@
+--extra-index-url https://download.pytorch.org/whl/cu126
+mlflow==3.10.1
+torch>=2.6
+scikit-learn==1.8.0
+protobuf==4.25.3
+matplotlib==3.10.8
+streamlit==1.56.0
+psutil==7.2.2
+numpy==1.26.4
+prometheus-fastapi-instrumentator==7.1.0
+prometheus-client
+joblib
+langdetect
+fastapi[standard]

@@ -1,0 +1,17 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.6.0
+
+mlflow==3.10.1
+numpy==1.26.4
+scikit-learn==1.8.0
+protobuf==4.25.3
+psutil==7.2.2
+streamlit
+joblib
+langdetect
+transformers
+fastapi[standard]
+tiktoken
+sentencepiece
+prometheus-fastapi-instrumentator==7.1.0
+prometheus-client

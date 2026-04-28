@@ -1,0 +1,53 @@
+services:
+  fastapi:
+    build: .
+    ports:
+      - "8000:8000"
+    working_dir: /gaurdrail-app
+    volumes:
+      - .:/gaurdrail-app
+    command: uvicorn api:app --host 0.0.0.0 --port 8000
+
+  streamlit:
+    build: .
+    ports:
+      - "8501:8501"
+    working_dir: /gaurdrail-app
+    volumes:
+      - .:/gaurdrail-app
+    command: streamlit run app.py --server.port 8501
+    depends_on:
+      - fastapi
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alerts.yml:/etc/prometheus/alerts.yml
+
+  node-exporter:
+    image: prom/node-exporter
+    ports:
+      - "9100:9100"
+
+  alertmanager:
+    image: prom/alertmanager
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+volumes:
+  grafana-storage:
