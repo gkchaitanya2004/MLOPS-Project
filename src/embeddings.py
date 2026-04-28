@@ -5,7 +5,7 @@ import torch
 import os
 from huggingface_hub import login
 
-login(token="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")
+login(token="YOUR_HUGGINGFACE_TOKEN") 
 
 
 ## 1 Load model
